@@ -38,7 +38,7 @@ LIMIT 3;
 
 /*Challenge 4 - Best Selling Authors Ranking*/
 
-SELECT aut.au_id, au_lname, au_fname, IFNULL(SUM(sal.qty),0) AS TOTAL
+SELECT aut.au_id, au_lname, au_fname, IFNULL(SUM(sal.qty),0) AS "TOTAL SALES"
 FROM authors AS aut
 INNER JOIN titleauthor AS taut ON aut.au_id = taut.au_id
 INNER JOIN titles AS tit ON taut.title_id = tit.title_id
