@@ -6,6 +6,7 @@ SELECT au.au_id AS 'AUTHOR ID', au.au_lname as 'LAST NAME', au.au_fname as 'FIRS
     ON title_au.title_id = titles.title_id
     JOIN publishers as pub
     ON titles.pub_id = pub.pub_id
+    
 
 
 SELECT au.au_id AS 'AUTHOR ID', au.au_lname as 'LAST NAME', au.au_fname as 'FIRST NAME', pub.pub_name as 'PUBLISHER', COUNT(titles.title_id) as 'TITLE COUNT'
@@ -42,4 +43,6 @@ SELECT au.au_id as 'AUTHOR ID', au.au_fname as 'FIRST NAME', au.au_lname as 'LAS
     on sl.title_id = titles.title_id
     GROUP BY au.au_id
     ORDER BY total DESC
+    
+
      
