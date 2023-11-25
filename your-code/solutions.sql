@@ -82,14 +82,16 @@ GROUP BY
 SELECT * FROM au_tile_sales ORDER BY TOTAL DESC LIMIT 3;
 
 /* Challenge 4 - Best Selling Authors Ranking*/
-SELECT au_title_name.au_id AS "AUTHOR ID", 
-au_title_name.au_lname AS "LAST NAME", 
-au_title_name.au_fname AS "FIRST NAME",
-SUM(sales.qty) AS TOTAL
-FROM au_title_name LEFT JOIN sales
-ON au_title_name.title_id = sales.title_id
+
+SELECT authors.au_id AS "AUTHOR ID", 
+authors.au_lname AS "LAST NAME", 
+authors.au_fname AS "FIRST NAME",
+COALESCE(SUM(sales.qty), 0 ) AS TOTAL
+FROM authors LEFT JOIN titleauthor USING (au_id)
+LEFT JOIN titles USING (title_id)
+LEFT JOIN sales USING (title_id)
 GROUP BY
 	`AUTHOR ID`,
     `LAST NAME`,
-    `FIRST NAME`;
-SELECT * FROM au_tile_sales ORDER BY TOTAL DESC;
+    `FIRST NAME`
+ORDER BY TOTAL DESC;
